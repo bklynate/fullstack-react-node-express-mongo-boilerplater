@@ -5,10 +5,9 @@ const bodyParser = require('body-parser');
 
 const PORT = process.env.PORT || 5000;
 const authRoutes = require('./routes/authRoutes');
-const scraperRoutes = require('./routes/scraperRoutes');
 const mongoose = require('mongoose');
 
-const mongoUrl = process.env.MONGODB_URI || 'mongodb://localhost/anify_db';
+const mongoUrl = process.env.MONGODB_URI || 'mongodb://localhost/randomlyNamed_db';
 const cookieSession = require('cookie-session');
 const passport = require('passport');
 const keys = require('./config/keys');
@@ -27,7 +26,6 @@ app.use(passport.initialize());
 app.use(passport.session());
 mongoose.connect(mongoUrl);
 authRoutes(app);
-scraperRoutes(app);
 
 if (process.env.NODE_ENV === 'production') {
   // Express serves up production build assets
